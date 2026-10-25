@@ -1,3 +1,4 @@
+
 import { Request, Response } from 'express';
 
 const tareas = [
@@ -17,4 +18,25 @@ const tareas = [
 
 export function obtenerTareas(req: Request, res: Response) {
     res.json(tareas);
+}
+
+export function crearTarea(req: Request, res: Response) {
+    const { titulo, descripcion } = req.body;
+
+    if (!titulo || !descripcion) {
+        return res.status(400).json({
+            mensaje: "El titulo y la descripcion son obligatorios"
+        });
+    }
+
+    const nuevaTarea = {
+        id: tareas.length + 1,
+        titulo,
+        descripcion,
+        completada: false
+    };
+
+    tareas.push(nuevaTarea);
+
+    return res.status(201).json(nuevaTarea);
 }
