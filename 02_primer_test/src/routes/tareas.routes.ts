@@ -1,14 +1,13 @@
 
-import express from 'express';
+import express from "express";
 import {
-    obtenerTareas,
-    crearTarea
-} from '../controllers/tareas.controller';
+    getTareas,
+    postTarea
+} from "../controllers/tareas.controller";
 
 const router = express.Router();
 
-router.get('/tareas', obtenerTareas);
-router.post('/tareas', crearTarea);
+router.get("/tareas", getTareas);
+router.post("/tareas", postTarea);
 
 export default router;
-
